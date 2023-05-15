@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ChatController {
 
-  @CrossOrigin(origins = "http://127.0.0.1:5173")
+  @CrossOrigin(origins = "http://127.0.0.1:5174")
   @GetMapping("/greet")
   public Map<String, String> greet(@RequestParam String naam) {
     Map<String, String> response = new HashMap<>();
