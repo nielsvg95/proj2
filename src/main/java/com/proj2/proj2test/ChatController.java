@@ -11,21 +11,35 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ChatController {
 
-  @CrossOrigin(origins = "http://127.0.0.1:5174")
+  @CrossOrigin(origins = "http://localhost:5173/")
   @GetMapping("/greet")
-  public Map<String, String> greet(@RequestParam String naam) {
+  public Map<String, String> greet(@RequestParam String naam, @RequestParam String language) {
     Map<String, String> response = new HashMap<>();
-    if (naam.toLowerCase().contains("niels")) {
-      response.put("message", naam + " is awesome!");
-      return response;
-    } else if (naam.toLowerCase().contains("ritesh")) {
-      response.put("message", "Hello, " + naam + "!");
-      return response;
-    } else {
-      return null;
-        
+
+    switch (language.toLowerCase()) {
+        case "english":
+            if (naam.toLowerCase().contains("niels")) {
+                response.put("message", naam + " is awesome!");
+            } 
+            else if (naam.toLowerCase().contains("ritesh")) {
+                response.put("message", "Hello, " + naam + "!");
+            }
+            break;
+
+        case "dutch":
+            if (naam.toLowerCase().contains("niels")) {
+                response.put("message", naam + " is geweldig!");
+            } 
+            else if (naam.toLowerCase().contains("ritesh")) {
+                response.put("message", "Hallo, " + naam + "!");
+            }
+            break;
+
+        default:
+            return null;
     }
-    
-  }
+
+    return response;
+}
 
 }
